@@ -50,7 +50,7 @@ def get_distance_image(mask, spacing):
     distance = distance_transform_edt(np.logical_not(surface), sampling=[spacing[2], spacing[1], spacing[0]])
     distance[mask > 0] = -1 * distance[mask > 0]
 
-    return distance.astype(np.float)
+    return distance.astype(np.float32)
 
 
 # Saving images to slices for 2D dose prediction methods
@@ -62,11 +62,11 @@ def save_slices(image, save_prefix,  list_slice_indexes, spacing):
 
 
 if __name__ == '__main__':
-    source_dir = 'YOUR_ROOT/Data/open-kbp-master/provided-data'
-    save_dir = 'YOUR_ROOT/Data/OpenKBP_DCNN'
+    source_dir = '/home/zihanli/project/LENAS/provided-data'
+    save_dir = '/home/zihanli/project/LENAS/Data/OpenKBP_DCNN'
 
     if not os.path.exists(save_dir):
-        os.mkdir(save_dir)
+        os.makedirs(save_dir, exist_ok=True)
 
     list_patient_dirs = []
     for sub_dir in ['train-pats', 'validation-pats', 'test-pats']:

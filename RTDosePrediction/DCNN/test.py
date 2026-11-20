@@ -48,7 +48,7 @@ def test_time_augmentation(trainer, input_, TTA_mode):
 
 def inference(trainer, list_patient_dirs, save_path, do_TTA=True):
     if not os.path.exists(save_path):
-        os.mkdir(save_path)
+        os.makedirs(save_path, exist_ok=True)
 
     with torch.no_grad():
         trainer.setting.network.eval()
@@ -84,21 +84,21 @@ def inference(trainer, list_patient_dirs, save_path, do_TTA=True):
             prediction_dose = 70. * prediction_dose
 
             # Save prediction to nii image
-            templete_nii = sitk.ReadImage('YOUR_ROOT/Data/RTDosePrediction/OpenKBP_C3D/pt_1/possible_dose_mask.nii.gz')
+            templete_nii = sitk.ReadImage('/home/zihanli/project/LENAS/Data/RTDosePrediction/OpenKBP_C3D/' + patient_id + '/possible_dose_mask.nii.gz')
             prediction_nii = sitk.GetImageFromArray(prediction_dose)
             prediction_nii = copy_sitk_imageinfo(templete_nii, prediction_nii)
             if not os.path.exists(save_path + '/' + patient_id):
-                os.mkdir(save_path + '/' + patient_id)
+                os.makedirs(save_path + "/" + patient_id, exist_ok=True)
             sitk.WriteImage(prediction_nii, save_path + '/' + patient_id + '/dose.nii.gz')
 
 
 if __name__ == "__main__":
-    if not os.path.exists('YOUR_ROOT/Data/RTDosePrediction/OpenKBP_C3D'):
+    if not os.path.exists('/home/zihanli/project/LENAS/Data/RTDosePrediction/OpenKBP_C3D'):
         raise Exception('OpenKBP_C3D should be prepared before testing, please run prepare_OpenKBP_C3D.py')
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('--model_path', type=str, default='YOUR_ROOT/Experiment/RTDosePrediction/Output/DCNN/best_val_evaluation_index.pkl')
-    parser.add_argument('--TTA', type=bool, default=True,
+    parser.add_argument('--model_path', type=str, default='/home/zihanli/project/LENAS/Experiment/RTDosePrediction/Output/DCNN/best_val_evaluation_index.pkl')
+    parser.add_argument('--TTA', type=lambda x: str(x).lower() in ('true', '1', 'yes'), default=True,
                         help='do test-time augmentation, default True')
     parser.add_argument('--GPU_id', type=int, default=0,
                         help='GPU_id for testing (default: 0)')
@@ -106,7 +106,7 @@ if __name__ == "__main__":
 
     trainer = NetworkTrainer()
     trainer.setting.project_name = 'DCNN'
-    trainer.setting.output_dir = 'YOUR_ROOT/Experiment/RTDosePrediction/Output/DCNN'
+    trainer.setting.output_dir = '/home/zihanli/project/LENAS/Experiment/RTDosePrediction/Output/DCNN'
 
     trainer.setting.network = Model(in_ch=4, out_ch=1,
                                     list_ch=[-1, 32, 64, 128, 256])
@@ -118,13 +118,13 @@ if __name__ == "__main__":
 
     # Start inference
     print('# \n\nStart inference !')
-    list_patient_dirs = ['YOUR_ROOT/Data/OpenKBP_DCNN/pt_' + str(i) for i in range(241, 341)]
+    list_patient_dirs = ['/home/zihanli/project/LENAS/Data/OpenKBP_DCNN/pt_' + str(i) for i in range(241, 341)]
     inference(trainer, list_patient_dirs, save_path=trainer.setting.output_dir + '/Prediction', do_TTA=args.TTA)
 
     # Evaluation
     print('# \n\nStart evaluation !')
     Dose_score, DVH_score = get_Dose_score_and_DVH_score(prediction_dir=trainer.setting.output_dir + '/Prediction',
-                                                         gt_dir='YOUR_ROOT/Data/RTDosePrediction/OpenKBP_C3D')
+                                                         gt_dir='/home/zihanli/project/LENAS/Data/RTDosePrediction/OpenKBP_C3D')
     print('\n\nDose score is: ' + str(Dose_score))
     print('DVH score is: ' + str(DVH_score))
 

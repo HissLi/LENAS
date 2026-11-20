@@ -25,7 +25,7 @@ if __name__ == '__main__':
     #  Start training
     trainer = NetworkTrainer()
     trainer.setting.project_name = 'DCNN'
-    trainer.setting.output_dir = 'YOUR_ROOT/Experiment/RTDosePrediction/Output/DCNN'
+    trainer.setting.output_dir = '/home/zihanli/project/LENAS/Experiment/RTDosePrediction/Output/DCNN'
     list_GPU_ids = args.list_GPU_ids
 
     trainer.setting.network = Model(in_ch=4, out_ch=1,
@@ -63,7 +63,7 @@ if __name__ == '__main__':
                              )
 
     if not os.path.exists(trainer.setting.output_dir):
-        os.mkdir(trainer.setting.output_dir)
+        os.makedirs(trainer.setting.output_dir, exist_ok=True)
     trainer.set_GPU_device(list_GPU_ids)
     trainer.run()
 

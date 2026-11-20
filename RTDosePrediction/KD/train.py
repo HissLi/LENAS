@@ -22,8 +22,8 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--batch_size', type=int, default=2,
                         help='batch size for training (default: 2)')
-    parser.add_argument('--list_GPU_ids', nargs='+', type=int, default=[1, 0],
-                        help='list_GPU_ids for training (default: [1, 0])')
+    parser.add_argument('--list_GPU_ids', nargs='+', type=int, default=[0],
+                        help='list_GPU_ids for training (default: [0])')
     parser.add_argument('--max_iter',  type=int, default=80000,
                         help='training iterations(default: 80000)')
     args = parser.parse_args()
@@ -31,7 +31,7 @@ if __name__ == '__main__':
     #  Start training
     trainer = NetworkTrainer()
     trainer.setting.project_name = 'KD_L2_4_c'
-    trainer.setting.output_dir = 'YOUR_ROOT/Experiment/RTDosePrediction/Output/KD_L2_4_c'
+    trainer.setting.output_dir = '/home/zihanli/project/LENAS/Experiment/RTDosePrediction/Output/KD_L2_4_c'
     list_GPU_ids = args.list_GPU_ids
 
     geno_file = 'student_genotype.pkl'
@@ -45,8 +45,8 @@ if __name__ == '__main__':
                                 n_nodes=4, 
                                 channel_change=True,
                                 gene=gene)
-    pre_trained_dir = "YOUR_ROOT/Experiment/RTDosePrediction/Output/KD_L2_4_c/best_val_evaluation_index.pkl"
-    trainer.setting.network.load_state_dict(torch.load(pre_trained_dir)['network_state_dict'], False)
+    pre_trained_dir = "/home/zihanli/project/LENAS/Experiment/RTDosePrediction/Output/KD_L2_4_c/best_val_evaluation_index.pkl"
+    trainer.setting.network.load_state_dict(torch.load(pre_trained_dir, weights_only=False)['network_state_dict'], False)
 
     trainer.setting.discriminator = Discriminators()
 
@@ -87,7 +87,7 @@ if __name__ == '__main__':
                              )
 
     if not os.path.exists(trainer.setting.output_dir):
-        os.mkdir(trainer.setting.output_dir)
+        os.makedirs(trainer.setting.output_dir, exist_ok=True)
     trainer.set_GPU_device(list_GPU_ids)
     trainer.run()
 

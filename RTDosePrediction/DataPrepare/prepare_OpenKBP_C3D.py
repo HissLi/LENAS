@@ -38,11 +38,11 @@ def np2NITFI(image, spacing):
 
 
 if __name__ == '__main__':
-    source_dir = 'YOUR_ROOT/Data/RTDosePrediction/open-kbp/provided-data'
-    save_dir = 'YOUR_ROOT/Data/RTDosePrediction/OpenKBP_C3D'
+    source_dir = '/home/zihanli/project/LENAS/provided-data'
+    save_dir = '/home/zihanli/project/LENAS/Data/RTDosePrediction/OpenKBP_C3D'
 
     if not os.path.exists(save_dir):
-        os.mkdir(save_dir)
+        os.makedirs(save_dir, exist_ok=True)
 
     list_patient_dirs = []
     for sub_dir in ['train-pats', 'validation-pats', 'test-pats']:

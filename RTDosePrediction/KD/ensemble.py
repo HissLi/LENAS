@@ -50,8 +50,8 @@ def test_time_augmentation(teacher, input_, TTA_mode):
 
 
 def ensemble_result(trainer):
-    list_patient_dirs = ['YOUR_ROOT/Data/RTDosePrediction/OpenKBP_C3D/pt_' + str(i) for i in range(201, 241)]
-    save_path = 'YOUR_ROOT/Experiment/RTDosePrediction/Output/Ensemble_4'
+    list_patient_dirs = ['/home/zihanli/project/LENAS/Data/RTDosePrediction/OpenKBP_C3D/pt_' + str(i) for i in range(201, 241)]
+    save_path = '/home/zihanli/project/LENAS/Experiment/RTDosePrediction/Output/Ensemble_4'
     if not os.path.exists(save_path):
         os.mkdir(save_path)
 

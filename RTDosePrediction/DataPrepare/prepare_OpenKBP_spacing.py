@@ -11,7 +11,7 @@ def resize_image_itk(itkimage, newSpacing, originSpcaing, resamplemethod=sitk.si
     originSize = itkimage.GetSize()
     factor = newSpacing / originSpcaing
     newSize = originSize / factor
-    newSize = newSize.astype(np.int)
+    newSize = newSize.astype(np.int64)
     resampler.SetReferenceImage(itkimage)  # 将输出的大小、原点、间距和方向设置为itkimage
     resampler.SetOutputSpacing(newSpacing.tolist())  # 设置输出图像间距
     resampler.SetSize(newSize.tolist())  # 设置输出图像大小
@@ -54,14 +54,14 @@ def np2NITFI(image, spacing):
 
 
 if __name__ == '__main__':
-    #source_dir = 'E:/RTDosePrediction/RTDosePrediction/Data/open-kbp-master/provided-data'
+    #source_dir = '/home/zihanli/project/LENAS/provided-data'
     #save_dir = 'E:/RTDosePrediction/RTDosePrediction/Data/OpenKBP_spacing'
     
-    source_dir = 'YOUR_ROOT/Data/open-kbp-master/provided-data'
-    save_dir = 'YOUR_ROOT/Data/OpenKBP_spacing'
+    source_dir = '/home/zihanli/project/LENAS/provided-data'
+    save_dir = '/home/zihanli/project/LENAS/Data/OpenKBP_spacing'
 
     if not os.path.exists(save_dir):
-        os.mkdir(save_dir)
+        os.makedirs(save_dir, exist_ok=True)
 
     list_patient_dirs = []
     for sub_dir in ['train-pats', 'validation-pats', 'test-pats']:

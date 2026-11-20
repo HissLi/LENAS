@@ -119,9 +119,9 @@ class MyDataset(data.Dataset):
         self.num_samples_per_epoch = num_samples_per_epoch
         self.transform = {'train': train_transform, 'val': val_transform}
 
-        self.list_case_id = {'train': ['YOUR_ROOT/Data/RTDosePrediction/OpenKBP_C3D/pt_' + str(i) for i in range(1, 201)],
-                            #  'val': ['YOUR_ROOT/Data/RTDosePrediction/OpenKBP_C3D/pt_' + str(i) for i in range(201, 241)]}[phase]
-                             'val': ['YOUR_ROOT/Data/RTDosePrediction/OpenKBP_C3D/pt_' + str(i) for i in range(241, 341)]}[phase] # validation set to test set
+        self.list_case_id = {'train': ['/home/zihanli/project/LENAS/Data/RTDosePrediction/OpenKBP_C3D/pt_' + str(i) for i in range(1, 201)],
+                            #  'val': ['/home/zihanli/project/LENAS/Data/RTDosePrediction/OpenKBP_C3D/pt_' + str(i) for i in range(201, 241)]}[phase]
+                             'val': ['/home/zihanli/project/LENAS/Data/RTDosePrediction/OpenKBP_C3D/pt_' + str(i) for i in range(201, 241)]}[phase]
 
         random.shuffle(self.list_case_id)
         self.sum_case = len(self.list_case_id)

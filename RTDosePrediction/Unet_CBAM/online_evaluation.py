@@ -5,7 +5,7 @@ from model import *
 
 
 def online_evaluation(trainer):
-    list_patient_dirs = ['YOUR_ROOT/Data/RTDosePrediction/OpenKBP_C3D/pt_' + str(i) for i in range(201, 241)]
+    list_patient_dirs = ['/home/zihanli/project/LENAS/Data/RTDosePrediction/OpenKBP_C3D/pt_' + str(i) for i in range(201, 241)]
 
     list_Dose_score = []
 

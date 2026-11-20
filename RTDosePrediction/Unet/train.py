@@ -19,8 +19,8 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--batch_size', type=int, default=2,
                         help='batch size for training (default: 2)')
-    parser.add_argument('--list_GPU_ids', nargs='+', type=int, default=[1, 0],
-                        help='list_GPU_ids for training (default: [1, 0])')
+    parser.add_argument('--list_GPU_ids', nargs='+', type=int, default=[0],
+                        help='list_GPU_ids for training (default: [0])')
     parser.add_argument('--max_iter',  type=int, default=80000,
                         help='training iterations(default: 80000)')
     args = parser.parse_args()
@@ -28,7 +28,7 @@ if __name__ == '__main__':
     #  Start training
     trainer = NetworkTrainer()
     trainer.setting.project_name = 'Unet'
-    trainer.setting.output_dir = 'YOUR_ROOT/Experiment/RTDosePrediction/Output/Unet'
+    trainer.setting.output_dir = '/home/zihanli/project/LENAS/Experiment/RTDosePrediction/Output/Unet'
     list_GPU_ids = args.list_GPU_ids
 
     trainer.setting.network = Model(in_ch=9, out_ch=1,
@@ -74,7 +74,7 @@ if __name__ == '__main__':
                              )
 
     if not os.path.exists(trainer.setting.output_dir):
-        os.mkdir(trainer.setting.output_dir)
+        os.makedirs(trainer.setting.output_dir, exist_ok=True)
     trainer.set_GPU_device(list_GPU_ids)
     trainer.run()
 

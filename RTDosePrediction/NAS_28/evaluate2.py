@@ -145,20 +145,20 @@ def inference(trainer, list_patient_dirs, save_path, do_TTA=True):
 
 
 if __name__ == "__main__":
-    if not os.path.exists('YOUR_ROOT/Data/RTDosePrediction/OpenKBP_C3D'):
+    if not os.path.exists('/home/zihanli/project/LENAS/Data/RTDosePrediction/OpenKBP_C3D'):
         raise Exception('OpenKBP_C3D should be prepared before testing, please run prepare_OpenKBP_C3D.py')
 
     parser = argparse.ArgumentParser()
     parser.add_argument('--GPU_id', type=int, default=0,
                         help='GPU id used for testing (default: 0)')
-    parser.add_argument('--model_path', type=str, default='YOUR_ROOT/Experiment/RTDosePrediction/Output/C3D/best_val_evaluation_index.pkl')
+    parser.add_argument('--model_path', type=str, default='/home/zihanli/project/LENAS/Experiment/RTDosePrediction/Output/C3D/best_val_evaluation_index.pkl')
     parser.add_argument('--TTA', type=bool, default=True,
                         help='do test-time augmentation, default True')
     args = parser.parse_args()
 
     trainer = NetworkTrainer()
     trainer.setting.project_name = 'C3D'
-    trainer.setting.output_dir = 'YOUR_ROOT/Experiment/RTDosePrediction/Output/C3D'
+    trainer.setting.output_dir = '/home/zihanli/project/LENAS/Experiment/RTDosePrediction/Output/C3D'
 
     trainer.setting.network = Model(in_ch=9, out_ch=1,
                                     list_ch_A=[-1, 16, 32, 64, 128, 256],
@@ -171,13 +171,13 @@ if __name__ == "__main__":
 
     # Start inference
     print('\n\n# Start inference !')
-    list_patient_dirs = ['YOUR_ROOT/Data/RTDosePrediction/OpenKBP_C3D/pt_' + str(i) for i in range(241, 341)]
+    list_patient_dirs = ['/home/zihanli/project/LENAS/Data/RTDosePrediction/OpenKBP_C3D/pt_' + str(i) for i in range(241, 341)]
     inference(trainer, list_patient_dirs, save_path=trainer.setting.output_dir + '/Prediction', do_TTA=args.TTA)
 
     # Evaluation
     print('\n\n# Start evaluation !')
     Dose_score, DVH_score = get_Dose_score_and_DVH_score(prediction_dir=trainer.setting.output_dir + '/Prediction',
-                                                         gt_dir='YOUR_ROOT/Data/RTDosePrediction/OpenKBP_C3D')
+                                                         gt_dir='/home/zihanli/project/LENAS/Data/RTDosePrediction/OpenKBP_C3D')
 
     print('\n\nDose score is: ' + str(Dose_score))
     print('DVH score is: ' + str(DVH_score))

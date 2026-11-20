@@ -131,6 +131,6 @@ def get_Dose_score_and_DVH_score(prediction_dir, gt_dir):
                     list_DVH_dif.append(abs(gt_DVH[metric] - pred_DVH[metric]))
                     list_DVH_dif_2.append(np.square(gt_DVH[metric] - pred_DVH[metric]))
             
-    #return np.mean(list_dose_dif), np.mean(list_DVH_dif)
+    return np.mean(list_dose_dif), np.mean(list_DVH_dif)
     print(np.mean(list_dose_dif), np.std(list_dose_dif), np.mean(list_dose_dif_2))
     print(np.mean(list_DVH_dif), np.std(list_DVH_dif), np.mean(list_DVH_dif_2))

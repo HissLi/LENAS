@@ -119,8 +119,8 @@ class MyDataset(data.Dataset):
         self.num_samples_per_epoch = num_samples_per_epoch
         self.transform = {'train': train_transform, 'val': val_transform}
 
-        self.list_case_id = {'train': ['YOUR_ROOT/Data/OpenKBP_spacing/pt_' + str(i) for i in range(1, 201)],
-                             'val': ['YOUR_ROOT/Data/OpenKBP_spacing/pt_' + str(i) for i in range(201, 241)]}[phase]
+        self.list_case_id = {'train': ['/home/zihanli/project/LENAS/Data/OpenKBP_spacing/pt_' + str(i) for i in range(1, 201)],
+                             'val': ['/home/zihanli/project/LENAS/Data/OpenKBP_spacing/pt_' + str(i) for i in range(201, 241)]}[phase]
 
         random.shuffle(self.list_case_id)
         self.sum_case = len(self.list_case_id)

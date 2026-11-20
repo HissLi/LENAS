@@ -1,9 +1,13 @@
 # -*- encoding: utf-8 -*-
 import time
 
+import os
 import torch
 import torch.nn as nn
 from torch import optim
+
+# Run wandb offline unless the user explicitly configures it
+os.environ.setdefault('WANDB_MODE', 'offline')
 import wandb
 
 
@@ -360,7 +364,7 @@ class NetworkTrainer:
 
     # Default load trainer in cpu, please reset device using the function self.set_GPU_device
     def init_trainer(self, ckpt_file, list_GPU_ids, only_network=True):
-        ckpt = torch.load(ckpt_file, map_location='cpu')
+        ckpt = torch.load(ckpt_file, map_location='cpu', weights_only=False)
 
         self.setting.network.load_state_dict(ckpt['network_state_dict'])
 
@@ -384,8 +388,8 @@ class NetworkTrainer:
             
     def save_wandb(self):
         config = wandb.config
-        config.project_name = self.project_name
-        config.output_dir = self.output_dir = None
-        config.max_iter = self.max_iter
-        config.max_epoch = self.max_epoch
-        config.save_per_epoch = self.save_per_epoch
+        config.project_name = self.setting.project_name
+        config.output_dir = self.setting.output_dir
+        config.max_iter = self.setting.max_iter
+        config.max_epoch = self.setting.max_epoch
+        config.save_per_epoch = self.setting.save_per_epoch

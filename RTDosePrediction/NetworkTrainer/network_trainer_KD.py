@@ -211,8 +211,8 @@ class NetworkTrainer:
     def ensemble(self, input_, model_list):
         res = torch.zeros_like(input_.shape)
         for i in model_list:
-            model_path = 'YOUR_ROOT/RTDosePrediction/PretrainedModels'
-            model_load = torch.load(os.path.join(model_path, i, '.pkl'))
+            model_path = '/home/zihanli/project/LENAS/RTDosePrediction/PretrainedModels'
+            model_load = torch.load(os.path.join(model_path, i, '.pkl'), weights_only=False)
             res += model_load(input_)
         res /= len(model_list)
         return res
@@ -364,7 +364,7 @@ class NetworkTrainer:
 
     # Default load trainer in cpu, please reset device using the function self.set_GPU_device
     def init_trainer(self, ckpt_file, list_GPU_ids, only_network=True):
-        ckpt = torch.load(ckpt_file, map_location='cpu')
+        ckpt = torch.load(ckpt_file, map_location='cpu', weights_only=False)
 
         self.setting.network.load_state_dict(ckpt['network_state_dict'])
 
