@@ -4,7 +4,6 @@
 # Local datasets and training outputs
 provided-data/
 Data/
-Experiment/
 **/data/
 **/test_trashcan/
 **/__pycache__/

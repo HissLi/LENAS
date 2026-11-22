@@ -1,0 +1,248 @@
+SearchedNet(
+  (stem0): ConvOps(
+    (norm): InstanceNorm3d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+    (conv): Conv3d(9, 16, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1))
+  )
+  (single_conv): Conv3d(16, 16, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1))
+  (down_cells): ModuleList(
+    (0): SearchedCell(
+      (preprocess0): ConvOps(
+        (norm): InstanceNorm3d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (activation): ReLU()
+        (conv): Conv3d(16, 32, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1))
+      )
+      (_ops): ModuleList(
+        (0): IdentityOp(
+          (norm): InstanceNorm3d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+          (activation): ReLU()
+        )
+        (1): ConvOps(
+          (norm): InstanceNorm3d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+          (activation): ReLU()
+          (conv): Conv3d(32, 32, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(2, 2, 2), dilation=(2, 2, 2))
+        )
+        (2): NoneOp(
+          (norm): InstanceNorm3d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+          (activation): ReLU()
+        )
+        (3): ConvOps(
+          (norm): InstanceNorm3d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+          (activation): ReLU()
+          (depth_conv): Conv3d(32, 32, kernel_size=(3, 3, 3), stride=(2, 2, 2), padding=(1, 1, 1), groups=32)
+          (point_conv): Conv3d(32, 32, kernel_size=(1, 1, 1), stride=(1, 1, 1))
+        )
+      )
+    )
+    (1): SearchedCell(
+      (preprocess0): ConvOps(
+        (norm): InstanceNorm3d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (activation): ReLU()
+        (conv): Conv3d(32, 64, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1))
+      )
+      (_ops): ModuleList(
+        (0): IdentityOp(
+          (norm): InstanceNorm3d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+          (activation): ReLU()
+        )
+        (1): ConvOps(
+          (norm): InstanceNorm3d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+          (activation): ReLU()
+          (conv): Conv3d(64, 64, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(2, 2, 2), dilation=(2, 2, 2))
+        )
+        (2): NoneOp(
+          (norm): InstanceNorm3d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+          (activation): ReLU()
+        )
+        (3): ConvOps(
+          (norm): InstanceNorm3d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+          (activation): ReLU()
+          (depth_conv): Conv3d(64, 64, kernel_size=(3, 3, 3), stride=(2, 2, 2), padding=(1, 1, 1), groups=64)
+          (point_conv): Conv3d(64, 64, kernel_size=(1, 1, 1), stride=(1, 1, 1))
+        )
+      )
+    )
+    (2): SearchedCell(
+      (preprocess0): ConvOps(
+        (norm): InstanceNorm3d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (activation): ReLU()
+        (conv): Conv3d(64, 128, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1))
+      )
+      (_ops): ModuleList(
+        (0): IdentityOp(
+          (norm): InstanceNorm3d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+          (activation): ReLU()
+        )
+        (1): ConvOps(
+          (norm): InstanceNorm3d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+          (activation): ReLU()
+          (conv): Conv3d(128, 128, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(2, 2, 2), dilation=(2, 2, 2))
+        )
+        (2): NoneOp(
+          (norm): InstanceNorm3d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+          (activation): ReLU()
+        )
+        (3): ConvOps(
+          (norm): InstanceNorm3d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+          (activation): ReLU()
+          (depth_conv): Conv3d(128, 128, kernel_size=(3, 3, 3), stride=(2, 2, 2), padding=(1, 1, 1), groups=128)
+          (point_conv): Conv3d(128, 128, kernel_size=(1, 1, 1), stride=(1, 1, 1))
+        )
+      )
+    )
+    (3): SearchedCell(
+      (preprocess0): ConvOps(
+        (norm): InstanceNorm3d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (activation): ReLU()
+        (conv): Conv3d(128, 256, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1))
+      )
+      (_ops): ModuleList(
+        (0): IdentityOp(
+          (norm): InstanceNorm3d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+          (activation): ReLU()
+        )
+        (1): ConvOps(
+          (norm): InstanceNorm3d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+          (activation): ReLU()
+          (conv): Conv3d(256, 256, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(2, 2, 2), dilation=(2, 2, 2))
+        )
+        (2): NoneOp(
+          (norm): InstanceNorm3d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+          (activation): ReLU()
+        )
+        (3): ConvOps(
+          (norm): InstanceNorm3d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+          (activation): ReLU()
+          (depth_conv): Conv3d(256, 256, kernel_size=(3, 3, 3), stride=(2, 2, 2), padding=(1, 1, 1), groups=256)
+          (point_conv): Conv3d(256, 256, kernel_size=(1, 1, 1), stride=(1, 1, 1))
+        )
+      )
+    )
+  )
+  (up_cells): ModuleList(
+    (0): SearchedCell(
+      (preprocess0): ConvOps(
+        (norm): InstanceNorm3d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (activation): ReLU()
+        (conv): Conv3d(512, 256, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1))
+      )
+      (_ops): ModuleList(
+        (0-1): 2 x ConvOps(
+          (norm): InstanceNorm3d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+          (activation): ReLU()
+          (depth_conv): Conv3d(256, 256, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1), groups=256)
+          (point_conv): Conv3d(256, 256, kernel_size=(1, 1, 1), stride=(1, 1, 1))
+        )
+        (2): NoneOp(
+          (norm): InstanceNorm3d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+          (activation): ReLU()
+        )
+        (3): ConvOps(
+          (norm): InstanceNorm3d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+          (activation): ReLU()
+          (conv): Conv3d(256, 256, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1))
+        )
+      )
+      (down_channel): ConvOps(
+        (norm): InstanceNorm3d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (activation): ReLU()
+        (conv): Conv3d(256, 128, kernel_size=(1, 1, 1), stride=(1, 1, 1))
+      )
+    )
+    (1): SearchedCell(
+      (preprocess0): ConvOps(
+        (norm): InstanceNorm3d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (activation): ReLU()
+        (conv): Conv3d(256, 128, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1))
+      )
+      (_ops): ModuleList(
+        (0-1): 2 x ConvOps(
+          (norm): InstanceNorm3d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+          (activation): ReLU()
+          (depth_conv): Conv3d(128, 128, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1), groups=128)
+          (point_conv): Conv3d(128, 128, kernel_size=(1, 1, 1), stride=(1, 1, 1))
+        )
+        (2): NoneOp(
+          (norm): InstanceNorm3d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+          (activation): ReLU()
+        )
+        (3): ConvOps(
+          (norm): InstanceNorm3d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+          (activation): ReLU()
+          (conv): Conv3d(128, 128, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1))
+        )
+      )
+      (down_channel): ConvOps(
+        (norm): InstanceNorm3d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (activation): ReLU()
+        (conv): Conv3d(128, 64, kernel_size=(1, 1, 1), stride=(1, 1, 1))
+      )
+    )
+    (2): SearchedCell(
+      (preprocess0): ConvOps(
+        (norm): InstanceNorm3d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (activation): ReLU()
+        (conv): Conv3d(128, 64, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1))
+      )
+      (_ops): ModuleList(
+        (0-1): 2 x ConvOps(
+          (norm): InstanceNorm3d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+          (activation): ReLU()
+          (depth_conv): Conv3d(64, 64, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1), groups=64)
+          (point_conv): Conv3d(64, 64, kernel_size=(1, 1, 1), stride=(1, 1, 1))
+        )
+        (2): NoneOp(
+          (norm): InstanceNorm3d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+          (activation): ReLU()
+        )
+        (3): ConvOps(
+          (norm): InstanceNorm3d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+          (activation): ReLU()
+          (conv): Conv3d(64, 64, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1))
+        )
+      )
+      (down_channel): ConvOps(
+        (norm): InstanceNorm3d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (activation): ReLU()
+        (conv): Conv3d(64, 32, kernel_size=(1, 1, 1), stride=(1, 1, 1))
+      )
+    )
+    (3): SearchedCell(
+      (preprocess0): ConvOps(
+        (norm): InstanceNorm3d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (activation): ReLU()
+        (conv): Conv3d(64, 32, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1))
+      )
+      (_ops): ModuleList(
+        (0-1): 2 x ConvOps(
+          (norm): InstanceNorm3d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+          (activation): ReLU()
+          (depth_conv): Conv3d(32, 32, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1), groups=32)
+          (point_conv): Conv3d(32, 32, kernel_size=(1, 1, 1), stride=(1, 1, 1))
+        )
+        (2): NoneOp(
+          (norm): InstanceNorm3d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+          (activation): ReLU()
+        )
+        (3): ConvOps(
+          (norm): InstanceNorm3d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+          (activation): ReLU()
+          (conv): Conv3d(32, 32, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1))
+        )
+      )
+      (down_channel): ConvOps(
+        (norm): InstanceNorm3d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (activation): ReLU()
+        (conv): Conv3d(32, 16, kernel_size=(1, 1, 1), stride=(1, 1, 1))
+      )
+    )
+  )
+  (bottle): ModuleList()
+  (last_conv): Sequential(
+    (0): Conv3d(32, 16, kernel_size=(1, 1, 1), stride=(1, 1, 1))
+    (1): Conv3d(16, 1, kernel_size=(1, 1, 1), stride=(1, 1, 1))
+  )
+)
+
+TOTAL_PARAMETERS 10945409
+INPUT_SHAPE (1, 9, 128, 128, 128)
+OUTPUT_SHAPE (1, 1, 128, 128, 128)
